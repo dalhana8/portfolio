@@ -49,6 +49,86 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* 네비게이션 바 */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.nav-logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nav-logo:hover {
+    color: var(--primary-color);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.2s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: var(--primary-color);
+}
+
+/* 스크롤 시 네비게이션 바 스타일 */
+.navbar.scrolled {
+    box-shadow: var(--shadow-md);
+}
+
 /* 로딩 화면 - 심플하게 */
 .loader {
     position: fixed;
@@ -85,14 +165,14 @@ body {
 /* 다크모드 토글 버튼 - 미니멀하게 */
 .theme-toggle {
     position: fixed;
-    top: 24px;
+    top: 80px;
     right: 24px;
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 10px;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 999;
     transition: all 0.2s ease;
     box-shadow: var(--shadow-sm);
 }
@@ -123,7 +203,7 @@ body {
     border-radius: 16px;
     box-shadow: var(--shadow-md);
     overflow: hidden;
-    margin-top: 60px;
+    margin-top: 100px;
 }
 
 /* 히어로 섹션 - 심플하게 */
@@ -183,6 +263,7 @@ body {
 /* 섹션 기본 스타일 */
 .section {
     margin-bottom: 56px;
+    scroll-margin-top: 80px; /* 네비게이션 바 높이 + 여백 */
 }
 
 .section:last-child {
@@ -555,6 +636,22 @@ body {
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
+    .nav-container {
+        padding: 0 16px;
+    }
+
+    .nav-menu {
+        gap: 20px;
+    }
+
+    .nav-logo {
+        font-size: 1.125rem;
+    }
+
+    .nav-link {
+        font-size: 0.875rem;
+    }
+
     .container {
         padding: 16px;
     }
@@ -608,6 +705,29 @@ body {
 }
 
 @media (max-width: 480px) {
+    .nav-menu {
+        gap: 8px;
+    }
+
+    .nav-link {
+        font-size: 0.75rem;
+        padding: 4px;
+    }
+
+    .nav-logo {
+        font-size: 1rem;
+    }
+
+    .theme-toggle {
+        top: 70px;
+        right: 16px;
+        padding: 8px;
+    }
+
+    .theme-toggle span {
+        font-size: 16px;
+    }
+
     .hero-section {
         padding: 32px 20px;
     }
