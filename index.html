@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="컴퓨터 공학과 학생이자 풀스택 개발자 문원규의 포트폴리오 사이트입니다.">
+    <meta name="description" content="컴퓨터 공학과 졸업생이자 풀스택 개발자 문원규의 포트폴리오 사이트입니다.">
     <meta name="keywords" content="풀스택개발자, 웹개발, 자바스크립트, HTML, CSS, Java, 포트폴리오">
     <meta name="author" content="문원규">
     <title>문원규 - 풀스택 개발자</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 로딩 화면 -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p>포트폴리오를 불러오는 중...</p>
+        </div>
+    </div>
+
+    <!-- 다크모드 토글 -->
+    <button class="theme-toggle" id="themeToggle" aria-label="다크모드 토글">
+        <span>🌙</span>
+    </button>
+
     <div class="container">
         <header class="profile-card">
             <section class="hero-section">
-                <div class="profile-image" role="img" aria-label="문원규 프로필 이미지">문원</div>
+                <div class="profile-image" role="img" aria-label="문원규 프로필 이미지">
+                    <img src="profile-placeholder.jpg" alt="문원규" onerror="this.style.display='none'; this.parentElement.innerHTML='문원';">
+                </div>
                 <h1>문원규</h1>
                 <p class="tagline">풀스택 개발자</p>
                 <p class="slogan">"끊임없이 학습하며 성장하는 개발자"</p>
@@ -83,17 +98,17 @@
                     <h2>🎓 학력 및 교육</h2>
                     <div class="education-list">
                         <article class="education-item">
-                            <div class="education-period">2025.01 ~ 2025.12</div>
+                            <div class="education-period">2025.07 ~ 2025.12</div>
                             <div class="education-content">
                                 <h3>우리FIS 아카데미</h3>
                                 <p>K-디지털 트레이닝 - 클라우드 서비스 개발 과정 (교육 중)</p>
                             </div>
                         </article>
                         <article class="education-item">
-                            <div class="education-period">2018 ~ 현재</div>
+                            <div class="education-period">2018.03 ~ 2025.02</div>
                             <div class="education-content">
                                 <h3>컴퓨터공학과</h3>
-                                <p>컴퓨터 공학 전공 ()</p>
+                                <p>컴퓨터 공학 전공 (재학 중)</p>
                             </div>
                         </article>
                     </div>
@@ -153,7 +168,7 @@
                     <h2>👨‍💻 자기소개</h2>
                     <div class="about-content">
                         <p>
-                            안녕하세요! 컴퓨터 공학과에서 컴퓨터 공학을 전공하며, 현재 우리FIS 아카데미에서 
+                            안녕하세요! 컴퓨터 공학과를 졸업하고, 현재 우리FIS 아카데미에서 
                             클라우드 서비스 개발 과정을 수강하고 있는 문원규입니다.
                         </p>
                         <br>
@@ -229,5 +244,7 @@
             </nav>
         </footer>
     </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
