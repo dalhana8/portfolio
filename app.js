@@ -33,8 +33,72 @@ document.addEventListener('DOMContentLoaded', function() {
         themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
     }
 
+    // 네비게이션 부드러운 스크롤
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const navHeight = 60;
+                const targetPosition = targetSection.offsetTop - navHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // 로고 클릭 시 맨 위로
+    const navLogo = document.querySelector('.nav-logo');
+    navLogo.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // 스크롤 시 현재 섹션 하이라이트
+    const sections = document.querySelectorAll('.section[id]');
+    const navbar = document.querySelector('.navbar');
+
+    function highlightNavigation() {
+        const scrollY = window.pageYOffset;
+        
+        // 네비게이션 바 스크롤 효과
+        if (scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        // 현재 보고 있는 섹션 찾기
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            const correspondingLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+            
+            if (scrollY >= sectionTop && scrollY < sectionBottom) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                if (correspondingLink) {
+                    correspondingLink.classList.add('active');
+                }
+            }
+        });
+    }
+
+    window.addEventListener('scroll', highlightNavigation);
+    highlightNavigation(); // 초기 실행
+
     // 스크롤 애니메이션
-    const sections = document.querySelectorAll('.section');
+    const allSections = document.querySelectorAll('.section');
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -48,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    sections.forEach(section => {
+    allSections.forEach(section => {
         sectionObserver.observe(section);
     });
 
@@ -111,12 +175,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressBar = document.createElement('div');
     progressBar.style.cssText = `
         position: fixed;
-        top: 0;
+        top: 60px;
         left: 0;
         width: 0%;
         height: 2px;
         background: var(--primary-color);
-        z-index: 9999;
+        z-index: 999;
         transition: width 0.1s ease;
     `;
     document.body.appendChild(progressBar);
